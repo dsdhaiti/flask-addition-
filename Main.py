@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 # Model
 class InputForm(Form):
+    q = FloatField(validators=[validators.InputRequired()])
     r = FloatField(validators=[validators.InputRequired()])
 
 # View
@@ -13,8 +14,9 @@ class InputForm(Form):
 def index():
     form = InputForm(request.form)
     if request.method == 'POST' and form.validate():
+        q = form.q.data
         r = form.r.data
-        s = compute(r)
+        s = compute(q,r)
         return render_template("view_output.html", form=form, s=s)
     else:
         return render_template("view_input.html", form=form)

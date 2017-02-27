@@ -1,4 +1,5 @@
 import math
 
-def compute(r):
-    return math.sin(r)
+def compute(q,r):
+
+    return q + r
